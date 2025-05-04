@@ -7,7 +7,7 @@ pipeline {
 
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    SONARQUBE_ENV = 'SonarQubeServer' // Jenkins name of SonarQube server
+    SONARQUBE_ENV = 'sonarqube' // Jenkins name of SonarQube server
     DOCKER_REPO = 'mikejc30/devops2025'
     CONTAINER_NAME = 'webapp-container'
   }
@@ -26,7 +26,7 @@ pipeline {
       steps {
         withSonarQubeEnv('SonarQubeServer') {
           sh 'sonar-scanner \
-              -Dsonar.projectKey=devops2025 \
+              -Dsonar.projectKey=devops2025-sonar \
               -Dsonar.sources=. \
               -Dsonar.host.url=$SONAR_HOST_URL \
               -Dsonar.login=$SONAR_AUTH_TOKEN'
@@ -58,7 +58,7 @@ pipeline {
           sh """
             docker rm -f $CONTAINER_NAME || true
             docker pull $IMAGE_NAME
-            docker run -d --name $CONTAINER_NAME -p 8087:8087 $IMAGE_NAME
+            docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME
           """
         }
       }
