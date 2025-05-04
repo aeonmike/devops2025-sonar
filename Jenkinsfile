@@ -24,7 +24,7 @@ pipeline {
 
     stage('SonarQube Scan') {
       steps {
-        withSonarQubeEnv('SonarQubeServer') {
+        withSonarQubeEnv('sonarqube') {
           sh 'sonar-scanner \
               -Dsonar.projectKey=devops2025-sonar \
               -Dsonar.sources=. \
