@@ -8,7 +8,7 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     SONARQUBE_ENV = 'sonarqube' // Jenkins name of SonarQube server
-    DOCKER_REPO = 'mikejc30/devops2025'
+    DOCKER_REPO = 'mikecabalin09/mikejc30''
     CONTAINER_NAME = 'webapp-container'
   }
 
